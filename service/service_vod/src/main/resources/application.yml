@@ -1,0 +1,46 @@
+# 服务端口
+server:
+  port: 8301
+  servlet:
+    context-path: /
+# 服务名
+spring:
+  application:
+    name: service-vod
+
+  # 环境设置：dev、test、prod
+  profiles:
+    active: dev
+
+  # mysql数据库连接
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/glkt_vod?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF8&allowPublicKeyRetrieval=true
+    username: root
+    password: 1234
+
+  #返回json的全局时间格式
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+  # 设置文件上传的最大空间
+  servlet:
+    multipart:
+      max-request-size: 1024MB
+      max-file-size: 1024MB
+# cos腾讯云上传图片
+tencent:
+  cos:
+    file:
+      region: ap-guangzhou
+      secretid: AKIDHOEn7AvPjmY3HEuJRIsBDzVjgLlumMgj
+      secretkey: mHWUu3vYv0oMcbJo1xcz81e18yXpqa4H
+      bucketname: classroom-1309620941
+
+#mybatis日志
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  # 扫描mapper
+  mapper-locations: classpath:com/simon/classroom/vod/mapper/xml/*.xml

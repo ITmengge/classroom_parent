@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.simon.classroom.vod.mapper.CourseMapper">
+
+    <select id="getCoursePublishVoById" resultType="com.simon.vo.vod.CoursePublishVo">
+        select
+            c.id,
+            c.title,
+            c.cover,
+            c.lesson_num as lessonNum,
+            s1.title as subjectParentTitle,
+            s2.title as subjectTitle,
+            t.name as teacherName,
+            c.price
+        from course as c
+            LEFT OUTER JOIN subject as s1 on c.subject_parent_id=s1.id
+            LEFT OUTER JOIN subject as s2 on c.subject_id=s2.id
+            LEFT OUTER JOIN teacher as t on c.teacher_id=t.id
+        where c.id=#{id}
+    </select>
+</mapper>
