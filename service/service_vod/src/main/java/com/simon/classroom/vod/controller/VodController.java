@@ -16,7 +16,7 @@ import java.util.Random;
 @Api(tags = "腾讯云点播接口")
 @RestController
 @RequestMapping("/admin/vod")
-@CrossOrigin
+//@CrossOrigin
 public class VodController {
 
     @Autowired

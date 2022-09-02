@@ -17,7 +17,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/glkt_vod?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF8&allowPublicKeyRetrieval=true
     username: root
-    password: xxx
+    password: 1234
 
   #返回json的全局时间格式
   jackson:
@@ -40,9 +40,9 @@ tencent:
   cos:
     file:
       region: ap-guangzhou
-      secretid: xxx
-      secretkey: xxx
-      bucketname: xxx
+      secretid: AKIDa091cx2qNddMoytXoeGdjX4MM5XjeIfl
+      secretkey: sSmpc8NL2SbWIr9AuObYEeohKgmb9RUG
+      bucketname: classroom-1309620941
 
 #mybatis日志
 mybatis-plus:

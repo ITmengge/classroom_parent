@@ -29,7 +29,7 @@ import java.util.List;
 @Api(tags = "讲师管理接口")
 @RestController
 @RequestMapping(value="/admin/vod/teacher")
-@CrossOrigin    // 添加这个注解就能解决跨域问题
+//@CrossOrigin    // 添加这个注解就能解决跨域问题
 public class TeacherController {
 
     @Autowired

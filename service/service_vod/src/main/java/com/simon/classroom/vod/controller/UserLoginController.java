@@ -19,7 +19,7 @@ import java.util.Map;
 @Api(tags = "用户登录接口")
 @RestController
 @RequestMapping("/admin/vod/user")
-@CrossOrigin    // 添加这个注解就能解决跨域问题
+//@CrossOrigin    // 添加这个注解就能解决跨域问题
 public class UserLoginController {
 
     /**

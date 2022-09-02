@@ -14,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Api(tags = "文件上传接口")
 @RestController
 @RequestMapping("/admin/vod/file")
-@CrossOrigin    // 解决跨域问题
+//@CrossOrigin    // 解决跨域问题
 public class FileUploadController {
 
     @Autowired
