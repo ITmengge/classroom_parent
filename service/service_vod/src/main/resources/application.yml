@@ -39,10 +39,10 @@ spring:
 tencent:
   cos:
     file:
-      region: ap-guangzhou
-      secretid: AKIDa091cx2qNddMoytXoeGdjX4MM5XjeIfl
-      secretkey: sSmpc8NL2SbWIr9AuObYEeohKgmb9RUG
-      bucketname: classroom-1309620941
+      region: XXXX
+      secretid: XXXX
+      secretkey: XXX
+      bucketname: XXXX
 
 #mybatis日志
 mybatis-plus:
