@@ -18,7 +18,7 @@ public class CouponInfo extends BaseEntity {
 
 	private static final long serialVersionUID = 1L;
 
-	@ApiModelProperty(value = "购物券类型 1 现金券")
+	@ApiModelProperty(value = "购物券类型 1 注册卷 2 推荐赠送卷")
 	@TableField("coupon_type")
 	private String couponType;
 

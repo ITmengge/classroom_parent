@@ -1,0 +1,42 @@
+# 服务端口
+server:
+  port: 8304
+
+# 服务名
+spring:
+  application:
+    name: service-user
+  # 环境设置：dev、test、prod
+  profiles:
+    active: dev
+
+  # mysql数据库连接
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/glkt_user?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF8&allowPublicKeyRetrieval=true
+    username: root
+    password: 1234
+
+  #返回json的全局时间格式
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+#mybatis日志
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  # 扫描mapper
+  mapper-locations: classpath:com/simon/classroom/user/mapper/xml/*.xml
+
+# 公众号id和秘钥
+# 腾讯云课堂微信公众平台appId
+wechat.mpAppId: xxxx
+# 腾讯云课堂微信公众平台api秘钥
+wechat.mpAppSecret: xxxx
+# 授权回调获取用户信息接口地址
+wechat.userInfoUrl: http://classroom2.gz2vip.91tunnel.com/api/user/wechat/userInfo

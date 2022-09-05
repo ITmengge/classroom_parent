@@ -33,3 +33,27 @@ spring:
         uri: lb://service-order
         # 设置路由断言，代理serviceId为auth-service的/auth/路径（如：/admin/order/chapter这种）
         predicates: Path=/*/order/**
+      # service-activity模块配置
+      routes[2]:
+        # 设置路由id
+        id: service-activity
+        # 设置路由的uri  （lb 是 load balance 负载均衡）
+        uri: lb://service-activity
+        # 设置路由断言，代理serviceId为auth-service的/auth/路径（如：/admin/activity/chapter这种）
+        predicates: Path=/*/activity/**
+      # service-user模块配置
+      routes[3]:
+        # 设置路由id
+        id: service-user
+        # 设置路由的uri  （lb 是 load balance 负载均衡）
+        uri: lb://service-user
+        # 设置路由断言，代理serviceId为auth-service的/auth/路径（如：/admin/user/chapter这种）
+        predicates: Path=/*/user/**
+      # service-wechat模块配置
+      routes[4]:
+        # 设置路由id
+        id: service-wechat
+        # 设置路由的uri  （lb 是 load balance 负载均衡）
+        uri: lb://service-wechat
+        # 设置路由断言，代理serviceId为auth-service的/auth/路径（如：/admin/wechat/chapter这种）
+        predicates: Path=/*/wechat/**

@@ -13,8 +13,10 @@
     <packaging>pom</packaging>
     <modules>
         <module>service_vod</module>
-        <module>sevice_order</module>
-        <module>activity</module>
+        <module>service_order</module>
+        <module>service_activity</module>
+        <module>service_user</module>
+        <module>service_wechat</module>
     </modules>
 
     <dependencies>

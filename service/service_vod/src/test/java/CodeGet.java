@@ -19,8 +19,10 @@ public class CodeGet {
         String projectPath = System.getProperty("user.dir");
         //gc.setOutputDir(projectPath + "/src/main/java");
 //        gc.setOutputDir("D:\\Java\\classroom\\classroom_parent\\service\\service_vod"+"/src/main/java");
-//        gc.setOutputDir("D:\\Java\\classroom\\classroom_parent\\service\\order"+"/src/main/java");
-        gc.setOutputDir("D:\\Java\\classroom\\classroom_parent\\service\\activity"+"/src/main/java");
+//        gc.setOutputDir("D:\\Java\\classroom\\classroom_parent\\service\\service_order"+"/src/main/java");
+//        gc.setOutputDir("D:\\Java\\classroom\\classroom_parent\\service\\service_activity"+"/src/main/java");
+//        gc.setOutputDir("D:\\Java\\classroom\\classroom_parent\\service\\service_user"+"/src/main/java");
+        gc.setOutputDir("D:\\Java\\classroom\\classroom_parent\\service\\service_wechat"+"/src/main/java");
 
         gc.setServiceName("%sService");	//去掉Service接口的首字母I
         gc.setAuthor("simon");
@@ -30,7 +32,10 @@ public class CodeGet {
         // 3、数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
 //        dsc.setUrl("jdbc:mysql://localhost:3306/glkt_vod?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF8");
-        dsc.setUrl("jdbc:mysql://localhost:3306/glkt_activity?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF8");
+//        dsc.setUrl("jdbc:mysql://localhost:3306/glkt_order?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF8");
+//        dsc.setUrl("jdbc:mysql://localhost:3306/glkt_activity?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF8");
+//        dsc.setUrl("jdbc:mysql://localhost:3306/glkt_user?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF8");
+        dsc.setUrl("jdbc:mysql://localhost:3306/glkt_wechat?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF8");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("1234");
@@ -41,11 +46,13 @@ public class CodeGet {
         PackageConfig pc = new PackageConfig();
 //        pc.setModuleName("vod"); //模块名
 //        pc.setModuleName("order"); //模块名
-        pc.setModuleName("activity"); //模块名
+//        pc.setModuleName("activity"); //模块名
+//        pc.setModuleName("user"); //模块名
+        pc.setModuleName("wechat"); //模块名
 
         pc.setParent("com.simon.classroom");
         pc.setController("controller");
-//        pc.setEntity("entity");
+        pc.setEntity("entity");
         pc.setService("service");
         pc.setMapper("mapper");
         mpg.setPackageInfo(pc);
@@ -57,7 +64,12 @@ public class CodeGet {
 //        strategy.setInclude("video_visitor");
 
 //        strategy.setInclude("order_detail","order_info");
-        strategy.setInclude("coupon_info","coupon_use");
+
+//        strategy.setInclude("coupon_info","coupon_use");
+
+//        strategy.setInclude("user_info");
+
+        strategy.setInclude("menu");
 
 
         strategy.setNaming(NamingStrategy.underline_to_camel);//数据库表映射到实体的命名策略
