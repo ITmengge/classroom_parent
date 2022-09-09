@@ -2,20 +2,52 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.simon.classroom.vod.mapper.CourseMapper">
 
+    <!-- 根据id获得课程发布信息 -->
     <select id="getCoursePublishVoById" resultType="com.simon.vo.vod.CoursePublishVo">
         select
             c.id,
             c.title,
             c.cover,
+            c.price,
             c.lesson_num as lessonNum,
             s1.title as subjectParentTitle,
             s2.title as subjectTitle,
-            t.name as teacherName,
-            c.price
-        from course as c
-            LEFT OUTER JOIN subject as s1 on c.subject_parent_id=s1.id
-            LEFT OUTER JOIN subject as s2 on c.subject_id=s2.id
-            LEFT OUTER JOIN teacher as t on c.teacher_id=t.id
+            t.name as teacherName
+        from
+            <include refid="tables" />
         where c.id=#{id}
     </select>
+
+    <!-- 根据课程id查询课程详情数据（与上面类似，只是多几个字段） -->
+    <select id="selectCourseVoById" resultType="com.simon.vo.vod.CourseVo">
+        SELECT
+        <include refid="columns" />
+        FROM
+        <include refid="tables" />
+        WHERE c.id = #{id}
+    </select>
+
+    <sql id="columns">
+        c.id,
+        c.title,
+        c.lesson_num AS lessonNum,
+        c.price,
+        c.cover,
+        c.buy_count AS buyCount,
+        c.view_count AS viewCount,
+        c.status,
+        c.publish_time AS publishTime,
+        c.teacher_id as teacherId,
+        t.name AS teacherName,
+        s1.title AS subjectParentTitle,
+        s2.title AS subjectTitle
+    </sql>
+
+    <!-- 相同的部分可以抽取出来 -->
+    <sql id="tables">
+        course c
+        LEFT JOIN teacher t ON c.teacher_id = t.id
+        LEFT JOIN subject s1 ON c.subject_parent_id = s1.id
+        LEFT JOIN subject s2 ON c.subject_id = s2.id
+    </sql>
 </mapper>

@@ -94,5 +94,12 @@ public class CourseController {
         courseService.removeCourse(id);
         return Result.success(null);
     }
+
+    @ApiOperation("查询所有课程以及讲师和分类名")
+    @GetMapping("findAll")
+    public Result findAll() {
+        List<Course> list = courseService.findlist();
+        return Result.success(list);
+    }
 }
 

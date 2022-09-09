@@ -14,6 +14,8 @@
     <modules>
         <module>service_user_client</module>
         <module>service_course_client</module>
+        <module>service_activity_client</module>
+        <module>service_teacher_client</module>
     </modules>
 
     <dependencies>

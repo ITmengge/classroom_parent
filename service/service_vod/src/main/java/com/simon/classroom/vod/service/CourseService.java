@@ -7,6 +7,7 @@ import com.simon.vo.vod.CourseFormVo;
 import com.simon.vo.vod.CoursePublishVo;
 import com.simon.vo.vod.CourseQueryVo;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -67,4 +68,17 @@ public interface CourseService extends IService<Course> {
      * @param id
      */
     void removeCourse(Long id);
+
+    /**
+     * 根据ID查询课程
+     * @param courseId
+     * @return
+     */
+    Map<String, Object> getInfoById(Long courseId);
+
+    /**
+     * 查询所有课程以及讲师和分类名
+     * @return
+     */
+    List<Course> findlist();
 }

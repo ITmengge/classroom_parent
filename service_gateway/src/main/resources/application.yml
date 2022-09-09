@@ -57,3 +57,11 @@ spring:
         uri: lb://service-wechat
         # 设置路由断言，代理serviceId为auth-service的/auth/路径（如：/admin/wechat/chapter这种）
         predicates: Path=/*/wechat/**
+      # service-live模块配置
+      routes[5]:
+        # 设置路由id
+        id: service-live
+        # 设置路由的uri  （lb 是 load balance 负载均衡）
+        uri: lb://service-live
+        # 设置路由断言，代理serviceId为auth-service的/auth/路径（如：/admin/live/chapter这种）
+        predicates: Path=/*/live/**

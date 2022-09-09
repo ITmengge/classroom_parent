@@ -143,5 +143,19 @@ public class TeacherController {
         }
     }
 
+    @ApiOperation("根据teacherId获得teacher")
+    @GetMapping("inner/getTeacher/{id}")
+    public Teacher getTeacherLive(@PathVariable Long id){
+        Teacher teacher = teacherService.getById(id);
+        return teacher;
+    }
+
+    @ApiOperation("获得所有teacher")
+    @GetMapping("inner/getTeacherAll")
+    public List<Teacher> getTeacherAll(){
+        List<Teacher> teacherList = teacherService.getTeacherAll();
+        return teacherList;
+    }
+
 }
 

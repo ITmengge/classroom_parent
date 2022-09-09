@@ -8,6 +8,7 @@ import com.simon.classroom.activity.service.CouponInfoService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.simon.classroom.activity.service.CouponUseService;
 import com.simon.classroom.client.user.UserInfoFeignClient;
+import com.simon.classroom.utils.DateUtil;
 import com.simon.model.activity.CouponInfo;
 import com.simon.model.activity.CouponUse;
 import com.simon.model.user.UserInfo;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,6 +34,9 @@ public class CouponInfoServiceImpl extends ServiceImpl<CouponInfoMapper, CouponI
 
     @Autowired
     private CouponUseService couponUseService;
+
+    @Autowired
+    private CouponInfoService couponInfoService;
 
     @Autowired
     private UserInfoFeignClient userInfoFeignClient;
@@ -75,6 +80,35 @@ public class CouponInfoServiceImpl extends ServiceImpl<CouponInfoMapper, CouponI
         });
 
         return pages;
+    }
+
+    /**
+     * 更新优惠卷使用状态
+     * @param couponUseId
+     * @param orderId
+     * @return
+     */
+    @Override
+    public Boolean updateCouponInfoUseStatus(Long couponUseId, Long orderId) {
+        CouponUse couponUse = new CouponUse();
+        couponUse.setId(couponUseId);
+        couponUse.setOrderId(orderId);
+        couponUse.setCouponStatus("1");
+        couponUse.setUsingTime(new Date());
+        boolean isSuccess = couponUseService.updateById(couponUse);
+        return isSuccess;
+    }
+
+    /**
+     * 判断优惠卷是否过期
+     * @param couponId
+     * @return
+     */
+    @Override
+    public Boolean judgeCouponIsExpire(Long couponId) {
+        CouponInfo couponInfo = couponInfoService.getById(couponId);
+        Date date = new Date();
+        return DateUtil.dateCompare(date, couponInfo.getExpireTime());
     }
 
     /**

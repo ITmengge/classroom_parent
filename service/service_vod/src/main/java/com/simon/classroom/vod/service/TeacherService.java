@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.simon.model.vod.Teacher;
 import com.simon.vo.vod.TeacherQueryVo;
 
+import java.util.List;
+
 /**
  * <p>
  * 讲师 服务类
@@ -15,6 +17,17 @@ import com.simon.vo.vod.TeacherQueryVo;
  */
 public interface TeacherService extends IService<Teacher> {
 
+    /**
+     * 分页查询教师列表
+     * @param pageParam
+     * @param teacherQueryVo
+     * @return
+     */
     IPage<Teacher> pageQuery(IPage<Teacher> pageParam, TeacherQueryVo teacherQueryVo);
 
+    /**
+     * 获得所有教师
+     * @return
+     */
+    List<Teacher> getTeacherAll();
 }

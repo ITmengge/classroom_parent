@@ -25,4 +25,17 @@ public interface CouponInfoService extends IService<CouponInfo> {
      */
     IPage<CouponUse> selectCouponUsePage(Page<CouponUse> pageParam, CouponUseQueryVo couponUseQueryVo);
 
+    /**
+     * 更新优惠卷使用状态
+     * @param couponUseId
+     * @param orderId
+     */
+    Boolean updateCouponInfoUseStatus(Long couponUseId, Long orderId);
+
+    /**
+     * 判断优惠卷是否过期
+     * @param couponId
+     * @return
+     */
+    Boolean judgeCouponIsExpire(Long couponId);
 }

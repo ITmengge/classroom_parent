@@ -22,7 +22,8 @@ public class CodeGet {
 //        gc.setOutputDir("D:\\Java\\classroom\\classroom_parent\\service\\service_order"+"/src/main/java");
 //        gc.setOutputDir("D:\\Java\\classroom\\classroom_parent\\service\\service_activity"+"/src/main/java");
 //        gc.setOutputDir("D:\\Java\\classroom\\classroom_parent\\service\\service_user"+"/src/main/java");
-        gc.setOutputDir("D:\\Java\\classroom\\classroom_parent\\service\\service_wechat"+"/src/main/java");
+//        gc.setOutputDir("D:\\Java\\classroom\\classroom_parent\\service\\service_wechat"+"/src/main/java");
+        gc.setOutputDir("D:\\Java\\classroom\\classroom_parent\\service\\service_live"+"/src/main/java");
 
         gc.setServiceName("%sService");	//去掉Service接口的首字母I
         gc.setAuthor("simon");
@@ -35,7 +36,8 @@ public class CodeGet {
 //        dsc.setUrl("jdbc:mysql://localhost:3306/glkt_order?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF8");
 //        dsc.setUrl("jdbc:mysql://localhost:3306/glkt_activity?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF8");
 //        dsc.setUrl("jdbc:mysql://localhost:3306/glkt_user?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF8");
-        dsc.setUrl("jdbc:mysql://localhost:3306/glkt_wechat?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF8");
+//        dsc.setUrl("jdbc:mysql://localhost:3306/glkt_wechat?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF8");
+        dsc.setUrl("jdbc:mysql://localhost:3306/glkt_live?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF8");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("1234");
@@ -48,7 +50,8 @@ public class CodeGet {
 //        pc.setModuleName("order"); //模块名
 //        pc.setModuleName("activity"); //模块名
 //        pc.setModuleName("user"); //模块名
-        pc.setModuleName("wechat"); //模块名
+//        pc.setModuleName("wechat"); //模块名
+        pc.setModuleName("live"); //模块名
 
         pc.setParent("com.simon.classroom");
         pc.setController("controller");
@@ -69,8 +72,9 @@ public class CodeGet {
 
 //        strategy.setInclude("user_info");
 
-        strategy.setInclude("menu");
+//        strategy.setInclude("menu");
 
+        strategy.setInclude("live_course","live_course_account","live_course_config","live_course_description","live_course_goods","live_visitor");
 
         strategy.setNaming(NamingStrategy.underline_to_camel);//数据库表映射到实体的命名策略
 

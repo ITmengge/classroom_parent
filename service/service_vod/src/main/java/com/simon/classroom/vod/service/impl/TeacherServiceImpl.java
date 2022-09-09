@@ -16,6 +16,7 @@ import org.springframework.util.StringUtils;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * <p>
@@ -61,4 +62,15 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> impl
         IPage<Teacher> pageModel = teacherService.page(pageParam,queryWrapper);
         return pageModel;
     }
+
+    /**
+     * 获得所有教师
+     * @return
+     */
+    @Override
+    public List<Teacher> getTeacherAll() {
+        List<Teacher> teacherList = baseMapper.selectList(null);
+        return teacherList;
+    }
+
 }

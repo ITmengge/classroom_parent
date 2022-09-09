@@ -9,9 +9,7 @@ import com.simon.model.vod.Course;
 import com.simon.model.vod.CourseDescription;
 import com.simon.model.vod.Subject;
 import com.simon.model.vod.Teacher;
-import com.simon.vo.vod.CourseFormVo;
-import com.simon.vo.vod.CoursePublishVo;
-import com.simon.vo.vod.CourseQueryVo;
+import com.simon.vo.vod.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -66,13 +64,13 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         // 2、判断条件为空，封装条件
         QueryWrapper<Course> wrapper = new QueryWrapper<>();
         if (!StringUtils.isEmpty(teacherId)){
-            wrapper.eq("teacherId",teacherId);
+            wrapper.eq("teacher_id",teacherId);
         }
         if (!StringUtils.isEmpty(subjectId)){
-            wrapper.eq("subjectId",subjectId);
+            wrapper.eq("subject_id",subjectId);
         }
         if (!StringUtils.isEmpty(subjectParentId)){
-            wrapper.eq("subjectParentId",subjectParentId);
+            wrapper.eq("subject_parent_id",subjectParentId);
         }
         if (!StringUtils.isEmpty(title)){
             wrapper.like("title",title);
@@ -221,6 +219,50 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         baseMapper.deleteById(id);
     }
 
+    /**
+     * 根据ID查询课程
+     * @param courseId
+     * @return
+     */
+    @Override
+    public Map<String, Object> getInfoById(Long courseId) {
+        // view_count 浏览数量+1
+        Course course = baseMapper.selectById(courseId);
+        course.setViewCount(course.getViewCount() + 1);
+        baseMapper.updateById(course);
+
+        // 根据课程id查询
+        // 课程详情数据（多表查询）
+        CourseVo courseVo = baseMapper.selectCourseVoById(courseId);
+        // 课程分类数据
+        List<ChapterVo> chapterVoList = chapterService.getNestedTreeList(courseId);
+        // 课程描述信息
+        CourseDescription courseDescription = courseDescriptionService.queryByCourseId(courseId);
+        // 课程所属讲师信息
+        Teacher teacher = teacherService.getById(course.getTeacherId());
+
+        // 封装map集合，返回
+        Map<String, Object> map = new HashMap<>();
+        map.put("courseVo", courseVo);
+        map.put("chapterVoList", chapterVoList);
+        map.put("description", null != courseDescription ? courseDescription.getDescription() : "");// 判断课程描述是否为空
+        map.put("teacher", teacher);
+        map.put("isBuy", false);//是否购买,后续完善
+        return map;
+    }
+
+    /**
+     * 查询所有课程以及讲师和分类名
+     * @return
+     */
+    @Override
+    public List<Course> findlist() {
+        List<Course> list = baseMapper.selectList(null);
+        list.stream().forEach(item -> {
+            this.getNameById(item);
+        });
+        return list;
+    }
 
     /**
      * 根据 讲师id 和 分类id（一层和二层） 获取对应的name

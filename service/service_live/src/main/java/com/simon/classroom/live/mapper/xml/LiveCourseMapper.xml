@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.simon.classroom.live.mapper.LiveCourseMapper">
+
+    <!-- 获取最近的直播 curdate()是当前日期-->
+    <select id="findLateLyList" resultType="com.simon.vo.live.LiveCourseVo">
+        select
+            id,course_id,course_name,start_time,end_time,
+            teacher_id,cover,create_time,update_time,is_deleted
+        from
+            live_course
+        where
+            date(start_time) >= curdate()
+        order by date(start_time) asc limit 5
+    </select>
+</mapper>
